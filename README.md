@@ -1,4 +1,4 @@
-#  🧐🏗️🤖 Privileged Sensing Scaffolds Reinforcement Learning
+#  🏗️ Privileged Sensing Scaffolds Reinforcement Learning
 ICLR 2024 (Spotlight)\
 [Edward S. Hu](https://edwardshu.com/), [James Springer](https://www.linkedin.com/in/springer-james/), [Oleh Rybkin](https://people.eecs.berkeley.edu/~oleh/), [Dinesh Jayaraman](https://www.seas.upenn.edu/~dineshj/)
 
