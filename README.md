@@ -7,7 +7,7 @@ Welcome to the codebase for "Privileged Sensing Scaffolds Reinforcement Learning
 * Scaffolder, a MBRL method that integrates privileged observations into all training time components to improve training of an unprivileged policy.
 * Sensory Scaffolding Suite (S3), a sensory scaffolding benchmark of 10 diverse tasks containing locomotion, dexterous manipulation, piano playing, and more.
 
-As you might have noticed, the codebase is missing. I'm currently cleaning up the code before the ICLR camera ready deadline at March 15. If you can't bear the wait, feel free to email me.
+As you might have noticed, the codebase is missing. I'm currently preparing the code for the camera ready deadline on March 15. If you can't bear the wait, feel free to email me.
 
 If you find our paper or code useful, please reference us:
 ```
