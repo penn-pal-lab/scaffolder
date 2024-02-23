@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="">
+  <meta property="og:image" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scaffolder</title>
+
+  <!-- Google tag (gtag.js) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E0GWRL87RE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E0GWRL87RE');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://edwardshu.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://penn-pal-lab.github.io/peg/">
+            Planning Goals for Exploration (ICLR23 Spotlight)
+          </a>
+          <a class="navbar-item" href="https://edwardshu.com/rac">
+            Robot-aware Control (ICLR22)
+          </a>
+          <a class="navbar-item" href="https://sites.google.com/view/lirf-corl-2022/">
+            Interactive Reward Functions (CoRL22 Best Paper Award)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Privileged Sensing Scaffolds Reinforcement Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.edwardshu.com">Edward S. Hu</a>,</span>
+            <span class="author-block">
+              James Springer,</span>
+            <span class="author-block">
+              <a href="https://www.seas.upenn.edu/~oleh/">Oleh Rybkin</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.seas.upenn.edu/~dineshj/">Dinesh Jayaraman</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Pennsylvania</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a target="_blank" href="https://openreview.net/pdf?id=djJLvSur1jZ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">TLDR: We use privileged sensors to improve RL.</h2>
+        <div class="content has-text-justified">
+          <p style="font-size:125%;">
+            <!-- Given a task with a target observation space, our method, Scaffolder, improves policy training by leveraging <span class="privileged-color">privileged sensors</span> only available during training. It trains performant policies in 10 challenging tasks, shown below. -->
+            Given a task and <span class="target-color">target observation space</span>, RL trains policies to solve them. Our method, <span class="gradient-text">Scaffolder</span>, enhances RL training by utilizing <span class="privileged-color">privileged sensors</span> only available during training, and trains performant policies across 10 challenging tasks (shown below).
+            <!-- Scaffolder, our method, enhances policy training for a <span class="target-color">target observation space</span> by utilizing <span class="privileged-color">privileged sensors</span> only available during training.It successfully trains performant policies across 10 challenging tasks, as demonstrated below. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+    <div class="hero-body">
+        <div id="envs-carousel" class="carousel envs-carousel">
+          <div class="carousel-cell">
+              <p class="gif-title">Blind Pick</p>
+              <img src="static/all_gifs_scaffolder/envs/blind_pick.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Vision</p>
+              <p class="gif-caption">Target: Joints, Touch</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Blind Locomotion</p>
+              <img src="static/all_gifs_scaffolder/envs/blind_locomotion.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Vision</p>
+              <p class="gif-caption">Target: Joints</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Blind Deaf Piano</p>
+              <img src="static/all_gifs_scaffolder/envs/pianist.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Sheet Music, Audio  </p>
+              <p class="gif-caption">Target: Joints</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Blind Numb Pen</p>
+              <img src="static/all_gifs_scaffolder/envs/state_pen_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Blind Numb Cube</p>
+              <img src="static/all_gifs_scaffolder/envs/state_block_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Noisy Monkey</p>
+              <img src="static/all_gifs_scaffolder/envs/noisy_monkey.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: True joints & branch poses</p>
+              <p class="gif-caption">Target: Noisy joints & branch poses</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Wrist Pick Place</p>
+              <img src="static/all_gifs_scaffolder/envs/wrist_pick_place.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Fixed Cam</p>
+              <p class="gif-caption">Target: Wrist Cam, Joints, Touch</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">Occluded Pick Place</p>
+              <img src="static/all_gifs_scaffolder/envs/occluded_pick_place.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Wrist Cam</p>
+              <p class="gif-caption">Target: Occluded Cam, Joints, Touch</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">RGB Pen</p>
+              <img src="static/all_gifs_scaffolder/envs/visual_pen_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Cam, Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="carousel-cell">
+              <p class="gif-title">RGB Cube</p>
+              <img src="static/all_gifs_scaffolder/envs/visual_cube_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Cam, Joints, Init/Goal Obj. Pose</p>
+          </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Summary</h2>
+        <div class="content has-text-justified">
+          <p style="font-size:125%;">
+            We need to look at our shoelaces as we first learn to tie them but having mastered this skill, can do it from touch alone. We call this phenomenon "sensory scaffolding": observation streams that are not needed by a master might yet aid a novice learner. We consider such sensory scaffolding setups for training artificial agents.
+          </p>
+          <!-- <div class="hero-body">
+            <img width="100%" height="100%" src="./static/images/3envs.png" /> 
+          </div>
+          <p style="font-size:125%;">
+            For example, a robot arm may need to be deployed  with just a low-cost, robust, general-purpose camera; yet its performance may improve by having privileged training-time-only access to expensive and unwieldy motion capture rigs or fragile tactile sensors. Above, we show some pratical scaffolding setups.
+          </p> -->
+        </div>
+        <div class="hero-body">
+          <img width="100%" src="./static/images/concept.png" /> 
+        </div>
+        <div class="content has-text-justified">
+          <p style="font-size:125%;">
+            For these settings, we propose Scaffolder, shown above, a reinforcement learning approach which effectively exploits privileged sensing in critics, world models, reward estimators, and other such auxiliary components that are only used at training time, to improve the target policy. 
+          </p>
+        </div>
+        <div class="hero-body">
+          <img width="100%" src="./static/images/all_envs.png" /> 
+        </div>
+        <div class="content has-text-justified">
+          <p style="font-size:125%;">
+            To evaluate sensory scaffolding agents, we design a new "S3" suite of ten diverse simulated robotic tasks that explore a wide range of practical sensor setups (shown above). 
+            Agents must use privileged camera sensing to train blind hurdlers, 
+            privileged active visual perception to help robot arms overcome visual occlusions,
+            privileged touch sensors to train robot hands, and more.
+            Scaffolder easily outperforms relevant prior baselines and frequently performs comparably even to policies that have test-time access to the privileged sensors.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="rows is-centered ">
+      <div class="row is-full-width has-text-centered">
+        <h2 class="title is-3"><span>Experiments</span></h2>
+        <div class="content has-text-justified">
+          <p style="font-size:125%;">
+            The Sensory Scaffolding Suite (S3) consists of 10 distinct tasks and sensor configurations. Click each task icon to learn more. 
+          </p>
+        </div>
+      <!-- <div class="gif-table">
+          <div class="gif-cell">
+              <p class="gif-title">Blind Pick</p>
+              <img src="static/all_gifs_scaffolder/envs/blind_pick.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Vision</p>
+              <p class="gif-caption">Target: Joints, Touch</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Blind Locomotion</p>
+              <img src="static/all_gifs_scaffolder/envs/blind_locomotion.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Vision</p>
+              <p class="gif-caption">Target: Joints</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Blind Deaf Piano</p>
+              <img src="static/all_gifs_scaffolder/envs/pianist.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Sheet Music, Audio  </p>
+              <p class="gif-caption">Target: Joints</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Blind Numb Pen</p>
+              <img src="static/all_gifs_scaffolder/envs/state_pen_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Blind Numb Cube</p>
+              <img src="static/all_gifs_scaffolder/envs/state_block_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Noisy Monkey</p>
+              <img src="static/all_gifs_scaffolder/envs/noisy_monkey.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: True joints & branch poses</p>
+              <p class="gif-caption">Target: Noisy joints & branch poses</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Wrist Pick Place</p>
+              <img src="static/all_gifs_scaffolder/envs/wrist_pick_place.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Fixed Cam</p>
+              <p class="gif-caption">Target: Wrist Cam, Joints, Touch</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">Occluded Pick Place</p>
+              <img src="static/all_gifs_scaffolder/envs/occluded_pick_place.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Wrist Cam</p>
+              <p class="gif-caption">Target: Occluded Cam, Joints, Touch</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">RGB Pen</p>
+              <img src="static/all_gifs_scaffolder/envs/visual_pen_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Cam, Joints, Init/Goal Obj. Pose</p>
+          </div>
+          <div class="gif-cell">
+              <p class="gif-title">RGB Cube</p>
+              <img src="static/all_gifs_scaffolder/envs/visual_cube_rotation.gif" alt="Gif 1">
+              <p class="gif-privileged-caption">Privileged: Object Pose, Touch</p>
+              <p class="gif-caption">Target: Cam, Joints, Init/Goal Obj. Pose</p>
+          </div>
+      </div> -->
+        <div class="env-visualizer">
+          <div class="image-container" onclick="updateInfo('blind-pick', 'img-blind-pick')">
+            <img id="img-blind-pick" class="env-image" src="static/all_gifs_scaffolder/envs/blind_pick.gif"/>
+            <span class="image-overlay">Blind Pick</span>
+          </div>
+          <!-- Add onclick events to other image containers as well -->
+          <div class="image-container" onclick="updateInfo('blind-locomotion', 'img-blind-locomotion')">
+            <img id="img-blind-locomotion" class="env-image" src="static/all_gifs_scaffolder/envs/blind_locomotion.gif"/>
+            <span class="image-overlay">Blind Locomotion</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('blind-deaf-pianist', 'img-blind-deaf-pianist')">
+            <img id="img-blind-deaf-pianist" class="env-image" src="static/all_gifs_scaffolder/envs/pianist.gif"/>
+            <span class="image-overlay">Blind Deaf Pianist</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('blind-numb-pen', 'img-blind-numb-pen')">
+            <img id="img-blind-numb-pen" class="env-image" src="static/all_gifs_scaffolder/envs/state_pen_rotation.gif"/>
+            <span class="image-overlay">Blind Numb Pen</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('blind-numb-cube', 'img-blind-numb-cube')">
+            <img id="img-blind-numb-cube" class="env-image" src="static/all_gifs_scaffolder/envs/state_block_rotation.gif"/>
+            <span class="image-overlay">Blind Numb Cube</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('noisy-monkey', 'img-noisy-monkey')">
+            <img id="img-noisy-monkey" class="env-image" src="static/all_gifs_scaffolder/envs/noisy_monkey.gif"/>
+            <span class="image-overlay">Noisy Monkey</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('wrist-pick-place', 'img-wrist-pick-place')">
+            <img id="img-wrist-pick-place" class="env-image" src="static/all_gifs_scaffolder/envs/wrist_pick_place.gif"/>
+            <span class="image-overlay">Wrist Pick Place</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('occluded-pick-place', 'img-occluded-pick-place')">
+            <img id="img-occluded-pick-place" class="env-image" src="static/all_gifs_scaffolder/envs/occluded_pick_place.gif"/>
+            <span class="image-overlay">Occluded Pick Place</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('rgb-pen', 'img-rgb-pen')">
+            <img id="img-rgb-pen" class="env-image" src="static/all_gifs_scaffolder/envs/visual_pen_rotation.gif"/>
+            <span class="image-overlay">RGB Pen</span>
+          </div>
+          <div class="image-container" onclick="updateInfo('rgb-cube', 'img-rgb-cube')">
+            <img id="img-rgb-cube" class="env-image" src="static/all_gifs_scaffolder/envs/visual_cube_rotation.gif"/>
+            <span class="image-overlay">RGB Cube</span>
+          </div>
+        </div>
+        <div id="info-container">
+          <div id="blind-pick" class="info-description">
+            <p>
+              <b>Task:</b> The Fetch robot arm must pick up a randomly initialized block on the table with only joint and touch sensing.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Camera that sees the table.
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Joints, Touch
+            </p>
+          </div>
+          <!-- Add other descriptions here -->
+          <div id="blind-locomotion" class="info-description">
+            <p>
+              <b>Task:</b> The Half Cheetah must run while overcoming hurdles that are randomly placed and randomly sized.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Camera that sees the cheetah and nearby hurdles.
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Joints
+            </p>
+          </div>
+          <div id="blind-deaf-pianist" class="info-description">
+            <p>
+              <b>Task:</b> The agent must play "Twinkle Twinkle Little Star" with two Shadowhand 30-DoF hands and only joint sensors. 
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b>  Future notes (simulating sheet music), and piano key presses (simulating audio).
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Joints
+            </p>
+          </div>
+          <div id="blind-numb-pen" class="info-description">
+            <p>
+              <b>Task:</b> The agent must dexterously manipulate a randomly initialized pen into a random goal orientation with only proprioception and initial conditions.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Pen Pose, Touch sensors (contacts visualized in red).
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Joints, Initial/Goal Pen Pose 
+            </p>
+          </div>
+          <div id="blind-numb-cube" class="info-description">
+            <p>
+              <b>Task:</b> The Shadowhand must dexterously manipulate a randomly initialized cube into a random goal orientation with only proprioception and initial conditions.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Cube Pose, Touch sensors (contacts visualized in red).
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Joints, Initial/Goal Cube Pose 
+            </p>
+          </div>
+          <div id="noisy-monkey" class="info-description">
+            <p>
+              <b>Task:</b> The monkey must swing from tree branch to tree branch using noisy estimates of joint and branch pose.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Ground truth joint and branch position sensors.
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Noisy Joint and Branch Position sensors.
+            </p>
+          </div>
+          <div id="wrist-pick-place" class="info-description">
+            <p>
+              <b>Task:</b> The Fetch robot arm must pick up a randomly initialized block and place it into a randomly initialized bin using a wrist camera with a limited field of view. This studies if active perception policies benefit from privileged optimal viewpoints.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Two fixed cameras, one that sees the block and one that sees the bin.
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Wrist Camera (limited FoV), Touch, Joints
+            </p>
+          </div>
+          <div id="occluded-pick-place" class="info-description">
+            <p>
+              <b>Task:</b> The Fetch robot arm must pick up a randomly initialized block and place it into a randomly initialized bin using a camera suffering from occlusion. This studies if occluded policies benefit from privileged active perception cameras.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Wrist Camera that can move and see occluded objects.
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Occluded Camera where object is blocked by shelf (see GIF), Touch, Joints
+            </p>
+          </div>
+          <div id="rgb-pen" class="info-description">
+            <p>
+              <b>Task:</b> The Shadowhand must dexterously manipulate a randomly initialized pen into a random goal orientation using a camera.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Object Pose, Touch
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Camera, Joints, Initial/Goal Pen Pose.
+            </p>
+          </div>
+          <div id="rgb-cube" class="info-description">
+            <p>
+              <b>Task:</b> The Shadowhand must dexterously manipulate a randomly initialized cube into a random goal orientation using a camera.
+              <br>
+              <b><span class="privileged-color">Privileged Sensors:</span></b> Object Pose, Touch
+              <br>
+              <b><span class="target-color">Target Sensors:</span></b> Camera, Joints, Initial/Goal Cube Pose.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3"><span>Finding 1: Privileged sensors support skill learning.</span></h2>
+        <div id="imageContainer" class="columns is-centered">
+          <img class="result-image" id="results_table" src="./static/images/results_table.png" style="display: block;">
+          <img class="result-image" id="results_curves" src="./static/images/results_curves.png" style="display: none;">
+        </div>
+        <div class="columns is-centered mt-5">
+          <div class="buttons">
+            <button id="tableButton" class="button is-primary">Show Overall Scores</button>
+            <button id="curveButton" class="button is-primary">Show Learning Curves</button>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            We evaluate Scaffolder and other baselines that exploit privileged information as follows: we use the final score of DreamerV3 on target observations as the lower bound (1.0), and the final score of DreamerV3 trained on privileged observations as the upper bound (1.0).  Scaffolder has the highest aggregate median performance across all 10 tasks.
+            <br>
+            <br>
+            Scaffolder bridges 79% of the gap between target and privileged observations, just by having temporary access to privileged sensors at training time. In other words, much of the gap between the privileged and target observations might lie not in whether they support the performing the  same behaviors, but in whether they support <b>learning</b> them. 
+            <br>
+            <br>
+            This result informs a more nuanced approach into RL training and sensor design. When setting up a new RL environment, users should consider how sensors impact learning instead of final performance. Sensors that were once thought necessary for execution may only be required for learning. Next, users may consider additional sensors that are obviously not required for execution yet still be useful for learning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3"><span>Finding 2: Privileged sensors improve learning through multiple routes.</span></h2>
+        <div class="hero-body">
+          <img width="100%" height="100%" src="./static/images/ablations.png" /> 
+        </div>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            We study the various routes through which privileged sensing influences learning in Scaffolder. We replace each privileged component with a non-privileged counterpart to assess component-wise contributions. We see that dropping components generally hurts performance, and that the contribution of each component is task dependent. For example, Blind Pick has difficult exploration, so removing privileged exploration ("No Scaff. Explore") hurts the most, and in RGB Cube,  privileged representation learning is important for encoding high-dimensional images, so ("No Scaff. Repr.") hurts the most.
+            <br>
+            <br>
+            In all these cases, the combined Scaffolder benefits from cohesively integrating these many routes for privileged sensing to influence policy learning, and performs best.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Finding 3: Scaffolder discovers interesting behaviors.</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            We highlight several interesting behaviors learned by Scaffolder and baselines. Scaffolder behaviors broadly fall into two categories depending on the task - they either perform information-gathering or robust actions to solve the task.
+            <!-- Sometimes, it performs information-gathering strategies - in Blind Picking, it performs spiral search over the workspace to find the block from touch alone. -->
+          </p>
+        </div>
+        <h3 class="title is-4">Information Gathering Strategies</h2>
+        <img class="spiral-search-gif" style="height: 300px;" src="./static/all_gifs_scaffolder/blind_pick/spiral_search.gif" /> 
+        <div class="gif-table">
+          <div class="gif-cell">
+            <img src="./static/all_gifs_scaffolder/blind_pick/asym.gif" />
+              <p class="gif-caption-title">Scaffolder Episode</p>
+          </div>
+          <div class="gif-cell">
+            <img src="./static/all_gifs_scaffolder/blind_pick/dv3+bc.gif" />
+              <p class="gif-caption-title">DreamerV3+BC Episode</p>
+          </div>
+          <div class="gif-cell">
+              <img src="./static/all_gifs_scaffolder/blind_pick/go.gif" />
+              <p class="gif-caption-title">Guided Observability Episode</p>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p style="font-size: 125%;">
+            In Blind Picking, the robot must pick up randomly initialized blocks with only touch and proprioception sensors. Only Scaffolder  solves this task.  We visualize the 3d position of the gripper over an episode and find a spiral pattern in the trajectory. Spiral search is a well-known strategy in robotics to efficiently find points in a space without prior knowledge, so it's interesting to see this strategy naturally emerge through RL. 
+            All other baselines fail - we visualize episodes from baselines DreamerV3+BC and Guided Observability above, and see they fail to find and pick up the block.
+          </p>
+        </div>
+        <h3 class="title is-4">Robust Strategies</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            At other times,  Scaffolder acquires robust behaviors invariant to unobservables - in Blind Locomotion, it  discovers robust run-and-jump maneuvers to minimize collisions with unseen randomized hurdles and quickly recovers after collisions. Baselines move slowly and are not as robust to collisions. 
+          </p>
+          <div class="gif-table">
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder Episode</p>
+                <img src="./static/all_gifs_scaffolder/blind_locomotion/asym2_trim.gif" />
+                <p class="gif-caption">Scaffolder moves quickly by frequently high-jumping to minimize collisions and quickly recovers after collisions.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Guided Observability Episode</p>
+                <img src="./static/all_gifs_scaffolder/blind_locomotion/go_trim.gif" />
+                <p class="gif-caption">The baseline Guided Observability moves quickly in unobstructed areas, but is frequently stopped by hurdles.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">DreamerV3 Episode</p>
+                <img src="./static/all_gifs_scaffolder/blind_locomotion/dv3_trim.gif" />
+                <p class="gif-caption">DreamerV3 moves slowly all the time and gets stuck frequently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Dexterous Manipulation</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            Now, we showcase behavior for the remaining tasks. 5/10 of the S3 tasks involve dexterous manipulation - Blind Deaf Piano, Blind Numb Pen, Blind Numb Cube, Visual Pen, Visual Cube.
+          </p>
+        </div>
+        <h3 class="title is-4">Blind Deaf Piano</h2>
+        <div id="blind-deaf-piano-gifs" class="gif-table">
+          <div class="gif-cell">
+            <p class="gif-title">Scaffolder Episode</p>
+            <video controls width="100%">
+              <source src="./static/all_gifs_scaffolder/pianist/asym_pianist.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="gif-caption">Scaffolder plays an imperfect but recognizable rendition of Twinkle Twinkle Little Star</p>
+          </div>
+          <div class="gif-cell">
+            <p class="gif-title">DreamerV3 Episode</p>
+            <video controls>
+              <source src="./static/all_gifs_scaffolder/pianist/po_pianist.mp4"
+                      type="video/mp4">
+            </video>
+            <p class="gif-caption">DreamerV3's rendition is unrecognizable.</p>
+          </div>
+        </div>
+        <div class="content has-text-justified">
+          <p style="font-size: 125%;">
+            Expert pianists can play songs from memory while being blind folded and deaf. Here, the agent must play “Twinkle Twinkle Little Star” given only proprioception during deployment. During training, the policy has access to future notes, piano key presses, and suggested fingerings, which emulates having vision to see sheet music and hearing to determine which keys were pressed.
+          </p>
+        </div>
+        <h3 class="title is-4">Blind Numb Object Manipulation</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            Next, we evaluate if agents can rotate cubes and pens to arbitrary goal poses given only proprioception and initial pose. During training time, we grant access to privileged touch sensors and object pose.
+          </p>
+          <div id="blind-numb-gifs" class="gif-table">
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder</p>
+                <img src="./static/all_gifs_scaffolder/blind_cube/asym.gif" />
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder</p>
+                <img src="./static/all_gifs_scaffolder/blind_pen/asym_slides.gif" />
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Informed Dreamer</p>
+                <img src="./static/all_gifs_scaffolder/blind_cube/inf_dv3.gif" />
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Dreamer</p>
+                <img src="./static/all_gifs_scaffolder/blind_pen/po.gif" />
+                </p>
+            </div>
+          </div>
+          <p style="text-align: left; font-size: 125%;">
+            Scaffolder quickly achieves the desired object orientation and maintains stability. Baselines are worse; they display instability - the block and pen tend to slip and slide on the hand.
+          </p>
+        </div>
+        <h3 class="title is-4">Visual Object Manipulation</h2>
+        <div class="content has-text-justified">
+          <p style="text-align: left; font-size: 125%;">
+            Next, the Visual Object Manipulation tasks extend the Blind Numb Object Manipulation setup by adding a top-down camera to the target sensor setup. The visual target policy must rotate the object to a goal pose.
+          </p>
+          <div id="blind-numb-gifs" class="gif-table">
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder</p>
+                <img src="./static/all_gifs_scaffolder/rgb_cube/asym.gif" />
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder</p>
+                <img src="./static/all_gifs_scaffolder/rgb_pen/asym.gif" />
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Guided Observability</p>
+                <img src="./static/all_gifs_scaffolder/rgb_cube/go.gif" />
+                </p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Informed Dreamer</p>
+                <img src="./static/all_gifs_scaffolder/rgb_pen/inf_dv3.gif" />
+            </div>
+          </div>
+          <p style="text-align: left; font-size: 125%;">
+            In the visual setting, we find that Scaffolder policies adeptly rotate the objects, while baselines are more unstable or completely fail. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Active Perception</h2>
+        <div class="content has-text-justified">
+        </div>
+        <h3 class="title is-4">Occluded Pick Place</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 125%;">
+            We examines the impact of active-perception as privileged sensing at training time. The target policy must use an RGB camera from an occluded viewpoint, alongside proprioception and touch sensing, to pick up a block behind a shelf and place it into a bin. Both block and bin locations are randomly initialized.
+          </p>
+          <div id="occluded-pick-place" class="gif-table">
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder</p>
+                <img src="./static/all_gifs_scaffolder/occluded_pick_place/asym.gif" />
+                <p class="gif-caption">Scaffolder quickly locates the block with touch sensing and places it on the goal.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">DreamerV3+BC</p>
+                <img src="./static/all_gifs_scaffolder/occluded_pick_place/dv3+bc.gif" />
+                <p class="gif-caption">DreamerV3+BC locates the block but fails to fully pick it up and even attempts to go to the goal location long after dropping it.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Guided Observability</p>
+                <img src="./static/all_gifs_scaffolder/occluded_pick_place/go.gif" />
+                <p class="gif-caption">Guided Observability locates the block but fails to fully place it on the goal on its first attempt, as its picking is less robust.</p>
+            </div>
+          </div>
+        </div>
+        <h3 class="title is-4">Wrist Pick Place</h2>
+        <div class="content has-text-justified">
+          <p style="font-size: 125%;">
+            Next, we investigate if privileged fixed optimal cameras can improve the training of an active perception policy. Here, a proprioceptive policy with a wrist camera must pick and place a randomly positioned block into a randomly positioned bin. Because the wrist camera has limited field of view, the robot must perform active perception to find the block to complete the task.
+          </p>
+          <div id="occluded-pick-place" class="gif-table">
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder (Wrist Cam)</p>
+                <img src="./static/all_gifs_scaffolder/wrist_pick_place/asym1.gif" />
+                <p class="gif-caption">From a noisy, limited field of view wrist camera, Scaffolder learns to find the block, pick it up, and place it into the bin.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">Scaffolder (Privileged Cam)</p>
+                <img src="./static/all_gifs_scaffolder/wrist_pick_place/asym2.gif" />
+                <p class="gif-caption">The privileged camera shows where the block and bin are randomly initialized.</p>
+            </div>
+            <div class="gif-cell">
+                <p class="gif-title">DreamerV3 (Wrist Cam)</p>
+                <img src="./static/all_gifs_scaffolder/wrist_pick_place/po1.gif" />
+                <p class="gif-caption">DreamerV3, with only access to the wrist camera, only learns to pick and fails to place the block.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a> -->
+      <a class="icon-link" href="https://github.com/hueds" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Template taken from <a
+              href="https://github.com/nerfies/nerfies.github.io">here</a>. GPT-4 also assisted in the development of this site.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function updateInfo(id, imgId) {
+  // Hide all descriptions
+  var descriptions = document.getElementsByClassName('info-description');
+  for (var i = 0; i < descriptions.length; i++) {
+    descriptions[i].style.display = 'none';
+  }
+
+  // Show the correct description
+  document.getElementById(id).style.display = 'block';
+
+  // Fade out all images
+  var images = document.getElementsByClassName('env-image');
+  for (var i = 0; i < images.length; i++) {
+    images[i].classList.add('faded');
+  }
+
+  // Unfade the clicked image
+  document.getElementById(imgId).classList.remove('faded');
+}
+document.getElementById('tableButton').addEventListener('click', function() {
+  document.getElementById('results_table').style.display = 'block';
+  document.getElementById('results_curves').style.display = 'none';
+});
+
+document.getElementById('curveButton').addEventListener('click', function() {
+  document.getElementById('results_table').style.display = 'none';
+  document.getElementById('results_curves').style.display = 'block';
+});
+</script>
+
+</body>
+</html>
