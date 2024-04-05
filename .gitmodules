@@ -1,0 +1,3 @@
+[submodule "dreamerv3"]
+	path = dreamerv3
+	url = git@github.com:edwhu/dreamerv3.git
