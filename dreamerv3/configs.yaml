@@ -249,7 +249,7 @@ gymnasium_blindpick:
   .*\.layers: 2
   .*\.units: 512
   dual_encoder: {full_mlp_keys: '.*', mlp_keys: '.*', full_cnn_keys: '.*', cnn_keys: '^$'}
-  decoder: {mlp_keys: '.*', cnn_keys: '*'}
+  decoder: {mlp_keys: '.*', cnn_keys: '.*'}
   full_decoder: {mlp_keys: '.*', cnn_keys: '.*'}
   run.steps: 600000
 
